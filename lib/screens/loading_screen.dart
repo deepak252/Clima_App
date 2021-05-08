@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:myapp/screens/location_screen.dart';
 import 'package:myapp/services/location.dart';
 import 'package:myapp/services/networking.dart';
 
@@ -30,6 +32,8 @@ class _LoadingScreenState extends State<LoadingScreen>  {
     
     var weatherData=await networkHelper.getData();
     print(weatherData["name"]);
+    //////////////////  PUSHING ROUTE ---------
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>LocationScreen()));
     
   }
 
@@ -37,13 +41,17 @@ class _LoadingScreenState extends State<LoadingScreen>  {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            getLocationData();
+        child: SpinKitRotatingCircle(
+          color: Colors.white,
+          size:100,
+        )
+        // child: RaisedButton(
+        //   onPressed: () {
+        //     getLocationData();
             
-          },
-          child: Text('Get Location'),
-        ),
+        //   },
+        //   child: Text('Get Location'),
+        // ),
       ),
     );
   }
